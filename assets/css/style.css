@@ -69,6 +69,7 @@ body{
     z-index: 3;
     color: black;
     width: 259px;
+    height: 100vh;
     background: #FFFFFF;
     padding: 18px;
     display: flex;
@@ -100,4 +101,8 @@ body{
 }
 .title-participants, .title-visibility{
     justify-content: center;
+}
+
+.none{
+    display: none;
 }
