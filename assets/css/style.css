@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 ion-icon{
     font-size: 42px;
 }
 body{
     background: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
 }
 .container-all{
     position: relative;
@@ -102,7 +105,49 @@ body{
 .title-participants, .title-visibility{
     justify-content: center;
 }
+.login-screen{
+    z-index: 4;
+    width: 100%;
+    position: absolute;
+    background: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
 
+.login-screen img{
+    width: 130px;
+    object-fit: contain;
+    margin: 72px 0 94px 0;
+}
+
+.login-screen input{
+    outline: none;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    width: 260px;
+    height: 54px;
+    color: #AEAEAE;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-screen button{
+    outline: none;
+    border-radius: 9px;
+    background-color: #E7E7E7;
+    color: #696969;
+    width: 109px;
+    height: 45px;
+    border: none;
+}
+
+.login-screen button:hover{
+    color: white;
+    background-color: #A2321D;
+}
 .none{
     display: none;
 }

@@ -12,6 +12,12 @@
     
     <div class="container-all">
 
+        <div class="login-screen">
+            <img src="assets/imgs/logo1.png" alt="Logo UOL">
+            <input type="text" name="username" placeholder="Digite seu nome" class="login-input">
+            <button type="submit" class="login-button" onclick="TakeUserName();">Entrar</button>
+        </div>
+
         <div class="top-bar">
             <img src="assets/imgs/logo1.png" alt="Logo UOL">
             <ion-icon onclick="showMenu();" name="people"></ion-icon>
@@ -24,10 +30,10 @@
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
 
-        <div class="menu-background" onclick="showMenu();">
+        <div class="menu-background none" onclick="showMenu();">
         </div>
 
-        <div class="menu-choices">
+        <div class="menu-choices none">
             <div class="title-participants">
                 <strong>Escolha um contato para enviar mensagem:</strong>
             </div>
