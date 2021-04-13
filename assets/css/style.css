@@ -86,6 +86,13 @@ body{
     font-size: 22px;
 }
 
+.check-mark{
+    color: green;
+    font-size: 9px;
+    margin-left: auto;
+    display: none;
+}
+
 .menu-choices > div{
     display: flex;
     width: 100%;
@@ -150,4 +157,8 @@ body{
 }
 .none{
     display: none;
+}
+
+.selected ion-icon{
+    display: initial;
 }
