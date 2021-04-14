@@ -8,9 +8,22 @@ function showMenu(){
     sideMenu.classList.toggle("none");
 }
 
-function TakeUserName(){
+function takeUserName(){
     loginScreen.classList.add("none");
-    userName =  document.querySelector(".login-input").value;
+    userName =  {name: document.querySelector(".login-input").value};
+    const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userName);
+
+    sendUserName.then(keepUser);
+    sendUserName.catch(sendUserError);
+}
+
+function keepUser(userName){
+    setInterval(function(){axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userName);},5000);
+}
+
+function sendUserError(){
+    loginScreen.classList.remove("none");
+    alert("Por favor, tente com um nome de usuário diferente");
 }
 
 function select(element){
