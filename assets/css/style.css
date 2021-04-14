@@ -47,8 +47,16 @@ body{
 .chat-input{
     outline: none;
     border: none;
-    width: 80%;
-    
+    width: 90%;
+    height: 40px;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.chat-input:focus{
+    font-style: normal;
+    color: black;
+    border: 1px solid black;
 }
 
 .chat{
@@ -127,20 +135,25 @@ body{
 }
 
 .login-screen img{
-    width: 35vw;
+    width: 100px;
     object-fit: contain;
     margin: 10vh 0 14vh 0;
 }
 
 .login-screen input{
     outline: none;
-    border: 1px solid #D7D7D7;
+    border: 2px solid #D7D7D7;
     border-radius: 4px;
-    width: 70vw;
-    height: 8vh;
+    width: 261px;
+    height: 54px;
     color: #AEAEAE;
     text-align: center;
     margin-bottom: 2vh;
+}
+
+.login-screen input:focus{
+    color: black;
+    border: 1px solid #A2321D;
 }
 
 .login-screen button{
@@ -163,4 +176,24 @@ body{
 
 .selected ion-icon{
     display: initial;
+}
+
+.chat-message{
+    width: 100%;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    margin: 4px 2vw;
+}
+
+.status-message{
+    background-color: #DCDCDC;
+}
+
+.private-message{
+    background-color: #FFDEDE;
+}
+
+.time-message{
+    color: #AAAAAA;
 }
