@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 ion-icon{
-    font-size: 42px;
+    font-size: 5vh;
 }
 body{
     background: #E5E5E5;
@@ -9,7 +9,8 @@ body{
 }
 .container-all{
     position: relative;
-    width: 375px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,9 +23,9 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 375px;
-    height: 80px;
-    padding: 25px;
+    width: 100vw;
+    height: 11vh;
+    padding: 3vh 6vw;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     background: #FFFFFF;
 }
@@ -36,9 +37,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 375px;
-    height: 80px;
-    padding: 27px;
+    width: 100vw;
+    height: 11vh;
+    padding: 3vh 6vw;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     background: #FFFFFF;
 }
@@ -47,11 +48,12 @@ body{
     outline: none;
     border: none;
     width: 80%;
+    
 }
 
 .chat{
-    margin-top: 106px;
-    margin-bottom: 80px;
+    margin-top: 16vh;
+    margin-bottom: 11vh;
 }
 
 .menu-background{
@@ -71,24 +73,24 @@ body{
     top: 0;
     z-index: 3;
     color: black;
-    width: 259px;
+    width: 70vw;
     height: 100vh;
     background: #FFFFFF;
-    padding: 18px;
+    padding: 2vh 4vw;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    font-size: 16px;
+    font-size: 2vh;
 }
 
 .menu-choices ion-icon{
-    font-size: 22px;
+    font-size: 3vh;
 }
 
 .check-mark{
     color: green;
-    font-size: 9px;
+    font-size: 1vh;
     margin-left: auto;
     display: none;
 }
@@ -96,25 +98,25 @@ body{
 .menu-choices > div{
     display: flex;
     width: 100%;
-    height: 36px;
+    height: 5vh;
     align-items: center;
     text-align: center;
 }
 .menu-choices p{
-    margin-left: 10px;
+    margin-left: 2vw;
 }
 .title-visibility{
-    height: 66px;
+    height: 10vh;
 }
 .title-participants{
-    height: 84px;
+    height: 13vh;
 }
 .title-participants, .title-visibility{
     justify-content: center;
 }
 .login-screen{
     z-index: 4;
-    width: 100%;
+    width: 100vw;
     position: absolute;
     background: white;
     height: 100vh;
@@ -125,20 +127,20 @@ body{
 }
 
 .login-screen img{
-    width: 130px;
+    width: 35vw;
     object-fit: contain;
-    margin: 72px 0 94px 0;
+    margin: 10vh 0 14vh 0;
 }
 
 .login-screen input{
     outline: none;
     border: 1px solid #D7D7D7;
     border-radius: 4px;
-    width: 260px;
-    height: 54px;
+    width: 70vw;
+    height: 8vh;
     color: #AEAEAE;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 2vh;
 }
 
 .login-screen button{
@@ -146,8 +148,8 @@ body{
     border-radius: 9px;
     background-color: #E7E7E7;
     color: #696969;
-    width: 109px;
-    height: 45px;
+    width: 30vw;
+    height: 6vh;
     border: none;
 }
 
