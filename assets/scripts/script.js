@@ -1,7 +1,9 @@
 const sideMenuBackground = document.querySelector(".menu-background");
 const sideMenu = document.querySelector(".menu-choices");
-const loginScreen = document.querySelector(".login-screen");    
+const loginScreen = document.querySelector(".login-screen");
+const chatContainer = document.querySelector(".chat");   
 let userName;
+
 
 function showMenu(){
     sideMenuBackground.classList.toggle("none");
@@ -19,6 +21,7 @@ function takeUserName(){
 
 function keepUser(userName){
     setInterval(function(){axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userName);},5000);
+    setInterval(loadMessages,3000);
 }
 
 function sendUserError(){
@@ -37,4 +40,54 @@ function select(element){
     }
 
     element.classList.add("selected");
+}
+
+function loadMessages(){
+    const serverMessages = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
+    
+    serverMessages.then(loadMessagesSucess);
+    serverMessages.catch(loadMessagesError);
+}
+
+function loadMessagesError(){
+    alert("Falha ao carregar o chat, por favor atualize a página!");
+}
+
+function loadMessagesSucess(element){
+    const allMessages = element.data;
+    console.log(allMessages[0].type);
+    console.log(typeof(allMessages[0].type));
+    for(let i = 0; i < allMessages.length; i++){
+        if(allMessages[i].type === "message"){
+            chatContainer.innerHTML+=`
+            <div class="chat-message">
+                <span class="time-message"> ${allMessages[i].time} </span>
+                <strong> ${allMessages[i].from} </strong>
+                <span>para </span>
+                <strong> ${allMessages[i].to} </strong>
+                <span>: ${allMessages[i].text} </span>
+            </div>
+            `
+        }
+        if(allMessages[i].type === "status"){
+            chatContainer.innerHTML+=`
+            <div class="chat-message status-message">
+                <span class="time-message"> ${allMessages[i].time} </span>
+                <strong> ${allMessages[i].from} </strong>
+                <span>: ${allMessages[i].text} </span>
+            </div>
+            `
+        }
+        if(allMessages[i].type === "private_message"){
+            chatContainer.innerHTML+=`
+            <div class="chat-message private-message">
+                <span class="time-message"> ${allMessages[i].time} </span>
+                <strong> ${allMessages[i].from} </strong>
+                <span>reservadamente para </span>
+                <strong> ${allMessages[i].to} </strong>
+                <span>: ${allMessages[i].text} </span>
+            </div>
+            `
+        }
+    }
 }
