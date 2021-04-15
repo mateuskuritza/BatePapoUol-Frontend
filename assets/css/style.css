@@ -64,7 +64,7 @@ body{
     margin-bottom: 11vh;
     width: 100vw;
     height: 75vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .menu-background{
