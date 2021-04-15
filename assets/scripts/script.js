@@ -27,7 +27,7 @@ function takeUserName(){
 function startChat(){
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
-    setInterval(searchParticipants,5000);
+    setInterval(searchParticipants,10000);
 }
 
 function searchParticipants(){
@@ -84,6 +84,28 @@ function select(element){
     element.classList.add("selected");
 }
 
+function takeTo(){
+    let messageTo = document.querySelector(".contacts.selected p").innerText;
+    if(messageTo === null){
+        messageTo = "Todos";
+    }
+    return messageTo
+}
+
+function takeType(){
+    let messageType = document.querySelector(".visibility.selected p").innerText;
+    if(messageType === null){
+        messageType = "message";
+    }
+    if(messageType === "Reservadamente"){
+        messageType = "private_message";
+    }
+    if(messageType === "Público"){
+        messageType = "message";
+    }
+    return messageType
+}
+
 function loadMessages(){
     const serverMessages = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
 
@@ -136,8 +158,8 @@ function loadMessagesSucess(element){
 
 function sendMessage(){
     const messageText = chatInput.value;
-
-    const message = { from: userName,to: "Todos",text: messageText, type: "message"};
+    const message = { from: userName,to: takeTo(),text: messageText, type: takeType()};
+    console.log(message);
     const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
 
     messageSend.catch(messageError);
