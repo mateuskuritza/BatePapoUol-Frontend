@@ -3,6 +3,7 @@ const sideMenu = document.querySelector(".menu-choices");
 const loginScreen = document.querySelector(".login-screen");
 const chatContainer = document.querySelector(".chat");  
 const chatInput = document.querySelector(".chat-input"); 
+const contactsContainer = document.querySelector(".contacts-container");
 let userName;
 let userNameObject;
 
@@ -25,6 +26,39 @@ function takeUserName(){
 function startChat(){
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
+    setInterval(searchParticipants,5000);
+}
+
+function searchParticipants(){
+    const lookParticipants = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants");
+
+    contactsContainer.innerHTML = `
+    <div class="contacts" onclick="select(this);">
+        <ion-icon name="people"></ion-icon>
+        <p>Todos</p>
+        <ion-icon class="check-mark" name="checkmark-outline"></ion-icon>
+    </div>
+    `
+    lookParticipants.then(lookParticipantesSucess);
+    lookParticipants.catch(lookParticipantsError);
+}
+
+function lookParticipantesSucess(response){
+    const participants = response.data;
+
+    for(let i = 0 ; i < participants.length ; i++){
+        contactsContainer.innerHTML+=`
+        <div class="contacts" onclick="select(this);">
+            <ion-icon name="person-circle"></ion-icon>
+            <p>${participants[i].name}</p>
+            <ion-icon class="check-mark" name="checkmark-outline"></ion-icon>
+        </div>
+        `
+    }
+}
+
+function lookParticipantsError(){
+    alert("Erro ao procurar os usuários online! Por favor, atualize a página");
 }
 
 function keepUserStatus(){
