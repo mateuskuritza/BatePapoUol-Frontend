@@ -10,6 +10,8 @@ const loginLoading = document.querySelector(".login-loading");
 const privateInputTextConteiner = document.querySelector(".private-input");
 let userName;
 let userNameObject;
+let messageType;
+let messageTo;
 
 function showSideMenu(){
     toogleNone(sideMenuBackground);
@@ -96,12 +98,11 @@ function select(element){
 }
 
 function takeTo(){
-    let messageTo = document.querySelector(".contacts.selected p").innerText;
-    return messageTo
+    messageTo = document.querySelector(".contacts.selected p").innerText;
 }
 
 function takeType(){
-    let messageType = document.querySelector(".visibility.selected p").innerText;
+    messageType = document.querySelector(".visibility.selected p").innerText;
     if(messageType === "Reservadamente"){
         messageType = "private_message";
     }
@@ -111,13 +112,15 @@ function takeType(){
 
     if(messageType === "private_message"){
         privateChatText()
+    }else{
+        privateInputTextConteiner.classList.add("none");
     }
-    return messageType
 }
 
 function privateChatText(){
-    privateInputTextConteiner.innerText = `Enviando para ${takeTo()} (reservadamente)`;
-    toogleNone(privateInputTextConteiner);
+    takeTo();
+    privateInputTextConteiner.innerText = `Enviando para ${messageTo} (reservadamente)`;
+    privateInputTextConteiner.classList.remove("none");
 }
 
 function loadMessages(){
@@ -171,11 +174,15 @@ function loadMessagesSucess(element){
 }
 
 function sendMessage(){
+    takeTo();
+    takeType();
+
     const messageText = chatInput.value;
-    const message = { from: userName,to: takeTo(),text: messageText, type: takeType()};
+    const message = { from: userName,to: messageTo,text: messageText, type: messageType};
 
     const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
-    loadMessages()
+    
+    messageSend.then(loadMessages);
     messageSend.catch(messageError);
 }
 
