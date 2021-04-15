@@ -8,6 +8,7 @@ const loginInput = document.querySelector(".login-input");
 const loginButton = document.querySelector(".login-button");
 const loginLoading = document.querySelector(".login-loading");
 const privateInputTextConteiner = document.querySelector(".private-input");
+const topBarUserName = document.querySelector(".top-bar span");
 let userName;
 let userNameObject;
 let messageType;
@@ -40,6 +41,7 @@ function startChat(){
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
     setInterval(searchParticipants,10000);
+    inserirUserName();
 }
 
 function searchParticipants(){
@@ -99,7 +101,6 @@ function select(element){
 
 function takeTo(){
     messageTo = document.querySelector(".contacts.selected p").innerText;
-    console.log(messageTo);
 }
 
 function takeType(){
@@ -221,3 +222,7 @@ document.addEventListener('keyup', function(pressed){
         }
     }
 )
+
+function inserirUserName(){
+    topBarUserName.innerHTML = `Conectado como: <strong>${userName}</strong>`;
+}
