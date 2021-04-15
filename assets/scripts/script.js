@@ -195,19 +195,29 @@ function messageError(error){
 }
 
 loginInput.addEventListener('keydown', function(pressed){
-    if(pressed.key === "Enter"){
-        if(loginInput.value === null){
-        }else{
-            takeUserName();
+        if(pressed.key === "Enter"){
+            if(loginInput.value === null){
+            }else{
+                takeUserName();
+            }
         }
     }
-})
+)
 
 chatInput.addEventListener('keydown', function(pressed){
-    if(pressed.key === "Enter"){
-        if(chatInput.value === null){
-        }else{
-            sendMessage();
+        if(pressed.key === "Enter"){
+            if(chatInput.value === null){
+            }else{
+                sendMessage();
+            }
         }
     }
-})
+)
+
+
+document.addEventListener('keyup', function(pressed){
+        if(sideMenu.classList.contains("none") === false && pressed.key === "Escape"){
+        showSideMenu();
+        }
+    }
+)
