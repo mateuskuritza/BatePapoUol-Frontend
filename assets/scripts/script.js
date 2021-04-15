@@ -171,6 +171,7 @@ function loadMessagesSucess(element){
             `
         }
     }
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 function sendMessage(){
