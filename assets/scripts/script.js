@@ -8,12 +8,15 @@ let userName;
 let userNameObject;
 
 function showMenu(){
-    sideMenuBackground.classList.toggle("none");
-    sideMenu.classList.toggle("none");
+    toogleNone(sideMenuBackground);
+    toogleNone(sideMenu);
+}
+
+function toogleNone(element){
+    element.classList.toggle("none");
 }
 
 function takeUserName(){
-    loginScreen.classList.add("none");
     userName = document.querySelector(".login-input").value;
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
@@ -25,6 +28,7 @@ function takeUserName(){
 }
 
 function startChat(){
+    toogleNone(loginScreen);
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
     setInterval(searchParticipants,10000);
@@ -67,7 +71,7 @@ function keepUserStatus(){
 }
 
 function sendUserError(){
-    loginScreen.classList.remove("none");
+    window.location.reload();
     alert("Por favor, tente com um nome de usuário diferente");
 }
 
