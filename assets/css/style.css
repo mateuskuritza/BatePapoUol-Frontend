@@ -59,12 +59,19 @@ body{
     border: 1px solid black;
 }
 
+.private-input{
+    color: #AAAAAA;
+    font-size: 14px;
+    font-style: normal;
+}
+
 .chat{
     margin-top: 14vh;
     margin-bottom: 11vh;
     width: 100vw;
     height: 75vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .menu-background{

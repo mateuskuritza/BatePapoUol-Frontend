@@ -7,6 +7,7 @@ const contactsContainer = document.querySelector(".contacts-container");
 const loginInput = document.querySelector(".login-input");
 const loginButton = document.querySelector(".login-button");
 const loginLoading = document.querySelector(".login-loading");
+const privateInputTextConteiner = document.querySelector(".private-input");
 let userName;
 let userNameObject;
 
@@ -91,6 +92,7 @@ function select(element){
     }
 
     element.classList.add("selected");
+    takeType();
 }
 
 function takeTo(){
@@ -106,7 +108,16 @@ function takeType(){
     if(messageType === "Público"){
         messageType = "message";
     }
+
+    if(messageType === "private_message"){
+        privateChatText()
+    }
     return messageType
+}
+
+function privateChatText(){
+    privateInputTextConteiner.innerText = `Enviando para ${takeTo()} (reservadamente)`;
+    toogleNone(privateInputTextConteiner);
 }
 
 function loadMessages(){

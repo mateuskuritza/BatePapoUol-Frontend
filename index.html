@@ -30,7 +30,12 @@
         <div class="chat"></div>
 
         <div class="bottom-bar">
-            <input type="text" name="mensagem" class="chat-input" placeholder="Escreva aqui...">
+            <div class="input-text">
+                <input type="text" name="mensagem" class="chat-input" placeholder="Escreva aqui...">
+                <span class="private-input none"></span>
+            </div>
+            
+
             <ion-icon name="paper-plane-outline" onclick="sendMessage();"> </ion-icon>
         </div>
 
