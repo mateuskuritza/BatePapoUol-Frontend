@@ -145,7 +145,7 @@ function loadMessagesSucess(element){
             </div>
             `
         }
-        if(allMessages[i].type === "private_message"){
+        if(allMessages[i].type === "private_message" && (allMessages[i].to === userName || allMessages[i].from === userName || allMessages[i].to === "Todos")){
             chatContainer.innerHTML+=`
             <div class="chat-message private-message">
                 <span class="time-message"> ${allMessages[i].time} </span>
