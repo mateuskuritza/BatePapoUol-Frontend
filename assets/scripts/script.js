@@ -4,6 +4,9 @@ const loginScreen = document.querySelector(".login-screen");
 const chatContainer = document.querySelector(".chat");  
 const chatInput = document.querySelector(".chat-input"); 
 const contactsContainer = document.querySelector(".contacts-container");
+const loginInput = document.querySelector(".login-input");
+const loginButton = document.querySelector(".login-button");
+const loginLoading = document.querySelector(".login-loading");
 let userName;
 let userNameObject;
 
@@ -20,7 +23,9 @@ function takeUserName(){
     userName = document.querySelector(".login-input").value;
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
-
+    toogleNone(loginInput);
+    toogleNone(loginButton);
+    toogleNone(loginLoading);
     sendUserName.then(startChat);
     sendUserName.catch(sendUserError);
     loadMessages();

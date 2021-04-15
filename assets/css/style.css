@@ -139,7 +139,7 @@ body{
     font-size: 18px;
 }
 
-.login-screen img{
+.login-screen > img{
     width: 100px;
     object-fit: contain;
     margin: 10vh 0 14vh 0;
@@ -174,9 +174,6 @@ body{
 .login-screen button:hover{
     color: white;
     background-color: #A2321D;
-}
-.none{
-    display: none;
 }
 
 .selected ion-icon{
@@ -227,4 +224,15 @@ body{
 .visibility:hover{
     filter: drop-shadow(0 0 0.75rem crimson);
     cursor: pointer;
+}
+
+.login-loading{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.none{
+    display: none;
 }
