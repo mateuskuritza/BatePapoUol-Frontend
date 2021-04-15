@@ -57,9 +57,8 @@ function loadMessagesError(){
 
 function loadMessagesSucess(element){
     const allMessages = element.data;
-    console.log(allMessages[0].type);
-    console.log(typeof(allMessages[0].type));
-    for(let i = 0; i < allMessages.length; i++){
+
+    for(let i = 99; i >= 70; i--){
         if(allMessages[i].type === "message"){
             chatContainer.innerHTML+=`
             <div class="chat-message">
