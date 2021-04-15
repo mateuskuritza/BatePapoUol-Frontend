@@ -9,17 +9,21 @@ const loginButton = document.querySelector(".login-button");
 const loginLoading = document.querySelector(".login-loading");
 const privateInputTextConteiner = document.querySelector(".private-input");
 const topBarUserName = document.querySelector(".top-bar span");
+const allBody = document.querySelector("body");
+const sunIcon = document.querySelector(".sunny-icon");
+const moonIcon = document.querySelector(".moon-icon");
+
 let userName;
 let userNameObject;
 let messageType;
 let messageTo;
 
 function showSideMenu(){
-    toogleNone(sideMenuBackground);
-    toogleNone(sideMenu);
+    toggleNone(sideMenuBackground);
+    toggleNone(sideMenu);
 }
 
-function toogleNone(element){
+function toggleNone(element){
     element.classList.toggle("none");
 }
 
@@ -27,9 +31,9 @@ function takeUserName(){
     userName = document.querySelector(".login-input").value;
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
-    toogleNone(loginInput);
-    toogleNone(loginButton);
-    toogleNone(loginLoading);
+    toggleNone(loginInput);
+    toggleNone(loginButton);
+    toggleNone(loginLoading);
     sendUserName.then(startChat);
     sendUserName.catch(sendUserError);
     loadMessages();
@@ -37,7 +41,7 @@ function takeUserName(){
 }
 
 function startChat(){
-    toogleNone(loginScreen);
+    toggleNone(loginScreen);
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
     setInterval(searchParticipants,10000);
@@ -225,4 +229,10 @@ document.addEventListener('keyup', function(pressed){
 
 function inserirUserName(){
     topBarUserName.innerHTML = `Conectado como: <strong>${userName}</strong>`;
+}
+
+function toggleDarkTheme(){
+    allBody.classList.toggle("dark-theme");
+    toggleNone(moonIcon);
+    toggleNone(sunIcon);
 }
