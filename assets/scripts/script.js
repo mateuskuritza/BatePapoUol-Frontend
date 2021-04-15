@@ -179,6 +179,7 @@ function sendMessage(){
     takeType();
 
     const messageText = chatInput.value;
+    chatInput.value = "";
     const message = { from: userName,to: messageTo,text: messageText, type: messageType};
 
     const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
