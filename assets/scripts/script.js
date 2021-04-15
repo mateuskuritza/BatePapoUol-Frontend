@@ -7,7 +7,7 @@ const contactsContainer = document.querySelector(".contacts-container");
 let userName;
 let userNameObject;
 
-function showMenu(){
+function showSideMenu(){
     toogleNone(sideMenuBackground);
     toogleNone(sideMenu);
 }
