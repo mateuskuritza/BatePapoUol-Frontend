@@ -193,3 +193,21 @@ function messageError(error){
     window.location.reload();
     console.log(error);
 }
+
+loginInput.addEventListener('keydown', function(pressed){
+    if(pressed.key === "Enter"){
+        if(loginInput.value === null){
+        }else{
+            takeUserName();
+        }
+    }
+})
+
+chatInput.addEventListener('keydown', function(pressed){
+    if(pressed.key === "Enter"){
+        if(chatInput.value === null){
+        }else{
+            sendMessage();
+        }
+    }
+})
