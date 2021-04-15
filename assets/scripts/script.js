@@ -44,7 +44,8 @@ function startChat(){
     toggleNone(loginScreen);
     setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
-    setInterval(searchParticipants,10000);
+    //setInterval(searchParticipants,10000);
+    searchParticipants();
     inserirUserName();
 }
 

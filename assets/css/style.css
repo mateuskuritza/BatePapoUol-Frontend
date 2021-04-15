@@ -55,7 +55,7 @@ body{
 }
 
 .top-bar > *{
-    margin: 10px;
+    margin: 0 10px;
 }
 
 .top-bar img{
@@ -104,7 +104,7 @@ body{
 
 .chat{
     margin-top: 14vh;
-    margin-bottom: 11vh;
+    margin-bottom: 12vh;
     width: 100vw;
     height: 75vh;
     overflow-y: scroll;
@@ -115,11 +115,11 @@ body{
 .menu-background{
     position: absolute;
     z-index: 2;
-    width: 100%;
+    width: 30vw;
     height: 100vh;
     opacity: 0.6;
     background: var(--letterAndIcons-color);
-    right: 0;
+    left: 0;
     top: 0;
 }
 
@@ -132,18 +132,17 @@ body{
     width: 70vw;
     height: 100vh;
     background: var(--backgrounds-color);
-    padding: 2vh 4vw;
+    padding: 0 18px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
     font-size: 16px;
-    overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .menu-choices ion-icon{
-    font-size: 20px;
+    font-size: 21px;
 }
 .check-mark{
     color: green;
@@ -154,19 +153,23 @@ body{
 .menu-choices div{
     display: flex;
     width: 100%;
-    height: 38px;
     align-items: center;
     text-align: center;
+}
+
+.visibility, .contacts{
     margin-top: 1px;
+    padding: 7.5px 0;
 }
 .menu-choices p{
-    margin-left: 2vw;
+    margin-left: 7px;
 }
 .title-visibility{
-    height: 84px;
+    padding: 25px;
+    margin-bottom: 4px;
 }
 .title-participants{
-    height: 66px;
+    padding: 26px;
 }
 .title-participants, .title-visibility{
     justify-content: center;
