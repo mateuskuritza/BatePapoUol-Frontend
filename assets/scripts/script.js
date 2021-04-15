@@ -1,7 +1,8 @@
 const sideMenuBackground = document.querySelector(".menu-background");
 const sideMenu = document.querySelector(".menu-choices");
 const loginScreen = document.querySelector(".login-screen");
-const chatContainer = document.querySelector(".chat");   
+const chatContainer = document.querySelector(".chat");  
+const chatInput = document.querySelector(".chat-input"); 
 let userName;
 
 
@@ -12,8 +13,9 @@ function showMenu(){
 
 function takeUserName(){
     loginScreen.classList.add("none");
-    userName =  {name: document.querySelector(".login-input").value};
-    const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userName);
+    userName = document.querySelector(".login-input").value;
+    userNameObject =  {name: userName};
+    const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
 
     sendUserName.then(keepUser);
     sendUserName.catch(sendUserError);
@@ -90,4 +92,18 @@ function loadMessagesSucess(element){
             `
         }
     }
+}
+
+function sendMessage(){
+    const messageText = chatInput.value;
+
+    const message = {from: userName,to: "Todos",text: messageText, type: "message"};
+    const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
+
+    messageSend.catch(messageError);
+}
+
+function messageError(error){
+    alert("Erro no envio de sua mensagem!");
+    console.log(error);
 }
