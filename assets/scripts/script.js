@@ -34,7 +34,7 @@ function searchParticipants(){
     const lookParticipants = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants");
 
     contactsContainer.innerHTML = `
-    <div class="contacts" onclick="select(this);">
+    <div class="contacts selected" onclick="select(this);">
         <ion-icon name="people"></ion-icon>
         <p>Todos</p>
         <ion-icon class="check-mark" name="checkmark-outline"></ion-icon>
@@ -86,17 +86,11 @@ function select(element){
 
 function takeTo(){
     let messageTo = document.querySelector(".contacts.selected p").innerText;
-    if(messageTo === null){
-        messageTo = "Todos";
-    }
     return messageTo
 }
 
 function takeType(){
     let messageType = document.querySelector(".visibility.selected p").innerText;
-    if(messageType === null){
-        messageType = "message";
-    }
     if(messageType === "Reservadamente"){
         messageType = "private_message";
     }
@@ -159,13 +153,14 @@ function loadMessagesSucess(element){
 function sendMessage(){
     const messageText = chatInput.value;
     const message = { from: userName,to: takeTo(),text: messageText, type: takeType()};
-    console.log(message);
-    const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
 
+    const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
+    loadMessages()
     messageSend.catch(messageError);
 }
 
 function messageError(error){
     alert("Erro no envio de sua mensagem!");
+    window.location.reload();
     console.log(error);
 }

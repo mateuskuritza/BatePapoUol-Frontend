@@ -60,9 +60,11 @@ body{
 }
 
 .chat{
-    margin-top: 16vh;
+    margin-top: 14vh;
     margin-bottom: 11vh;
     width: 100vw;
+    height: 75vh;
+    overflow: scroll;
 }
 
 .menu-background{
