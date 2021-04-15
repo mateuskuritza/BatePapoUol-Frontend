@@ -232,6 +232,8 @@ function inserirUserName(){
     topBarUserName.innerHTML = `Conectado como: <strong>${userName}</strong>`;
 }
 
+
+// sim agora eu coloco tema escuro em tudo pena que sou horrivel pra escolher as cores
 function toggleDarkTheme(){
     allBody.classList.toggle("dark-theme");
     toggleNone(moonIcon);
