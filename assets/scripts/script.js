@@ -21,6 +21,7 @@ function takeUserName(){
     sendUserName.then(startChat);
     sendUserName.catch(sendUserError);
     loadMessages();
+    searchParticipants();
 }
 
 function startChat(){
