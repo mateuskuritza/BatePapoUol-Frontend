@@ -190,6 +190,10 @@ body{
     align-items: center;
 }
 
+.chat-message > *{
+    margin-right: 4px;
+}
+
 .status-message{
     background-color: #DCDCDC;
 }
@@ -200,5 +204,4 @@ body{
 
 .time-message{
     color: #AAAAAA;
-    margin-right: 4px;
 }

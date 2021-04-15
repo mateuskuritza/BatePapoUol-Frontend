@@ -4,7 +4,7 @@ const loginScreen = document.querySelector(".login-screen");
 const chatContainer = document.querySelector(".chat");  
 const chatInput = document.querySelector(".chat-input"); 
 let userName;
-
+let userNameObject;
 
 function showMenu(){
     sideMenuBackground.classList.toggle("none");
@@ -17,13 +17,18 @@ function takeUserName(){
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
 
-    sendUserName.then(keepUser);
+    sendUserName.then(startChat);
     sendUserName.catch(sendUserError);
+    loadMessages();
 }
 
-function keepUser(userName){
-    setInterval(function(){axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userName);},5000);
+function startChat(){
+    setInterval(keepUserStatus,5000);
     setInterval(loadMessages,3000);
+}
+
+function keepUserStatus(){
+    axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userNameObject);
 }
 
 function sendUserError(){
@@ -46,7 +51,7 @@ function select(element){
 
 function loadMessages(){
     const serverMessages = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
-    
+
     serverMessages.then(loadMessagesSucess);
     serverMessages.catch(loadMessagesError);
 }
@@ -57,16 +62,17 @@ function loadMessagesError(){
 
 function loadMessagesSucess(element){
     const allMessages = element.data;
+    chatContainer.innerHTML="";
 
-    for(let i = 99; i >= 70; i--){
+    for(let i = 0; i < allMessages.length; i++){
         if(allMessages[i].type === "message"){
             chatContainer.innerHTML+=`
             <div class="chat-message">
                 <span class="time-message"> ${allMessages[i].time} </span>
                 <strong> ${allMessages[i].from} </strong>
                 <span>para </span>
-                <strong> ${allMessages[i].to} </strong>
-                <span>: ${allMessages[i].text} </span>
+                <strong> ${allMessages[i].to}: </strong>
+                <span> ${allMessages[i].text} </span>
             </div>
             `
         }
@@ -75,7 +81,7 @@ function loadMessagesSucess(element){
             <div class="chat-message status-message">
                 <span class="time-message"> ${allMessages[i].time} </span>
                 <strong> ${allMessages[i].from} </strong>
-                <span>: ${allMessages[i].text} </span>
+                <span> ${allMessages[i].text} </span>
             </div>
             `
         }
@@ -85,8 +91,8 @@ function loadMessagesSucess(element){
                 <span class="time-message"> ${allMessages[i].time} </span>
                 <strong> ${allMessages[i].from} </strong>
                 <span>reservadamente para </span>
-                <strong> ${allMessages[i].to} </strong>
-                <span>: ${allMessages[i].text} </span>
+                <strong> ${allMessages[i].to}: </strong>
+                <span> ${allMessages[i].text} </span>
             </div>
             `
         }
@@ -96,7 +102,7 @@ function loadMessagesSucess(element){
 function sendMessage(){
     const messageText = chatInput.value;
 
-    const message = {from: userName,to: "Todos",text: messageText, type: "message"};
+    const message = { from: userName,to: "Todos",text: messageText, type: "message"};
     const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
 
     messageSend.catch(messageError);
