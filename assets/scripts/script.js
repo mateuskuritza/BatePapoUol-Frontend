@@ -99,6 +99,7 @@ function select(element){
 
 function takeTo(){
     messageTo = document.querySelector(".contacts.selected p").innerText;
+    console.log(messageTo);
 }
 
 function takeType(){
@@ -213,7 +214,6 @@ chatInput.addEventListener('keydown', function(pressed){
         }
     }
 )
-
 
 document.addEventListener('keyup', function(pressed){
         if(sideMenu.classList.contains("none") === false && pressed.key === "Escape"){
