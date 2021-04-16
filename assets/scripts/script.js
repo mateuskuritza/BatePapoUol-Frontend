@@ -31,8 +31,8 @@ function toggleNone(element){
 
 function takeUserName(){
     userName = loginInput.value;
-    while(userName.length>=10){
-        alert("Por favor, insira um nome de usuário válido! (Menos de 10 caracteres)")
+    while(userName.length>=15){
+        alert("Por favor, insira um nome de usuário válido! (Menos de 15 caracteres)")
         return
     }
     userNameObject =  {name: userName};
