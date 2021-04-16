@@ -32,7 +32,8 @@ body{
 }
 
 ion-icon{
-    font-size: 60px;
+    font-size: 90px;
+    max-width: 60px;
     cursor: pointer;
     color: var(--letterAndIcons-color);
 }
@@ -57,6 +58,10 @@ ion-icon{
 .top-bar img{
     width: 75px;
 }
+
+.top-bar span{
+    font-size: clamp(14px, 2vw, 24px);
+}
 .bottom-bar{
     position: fixed;
     bottom: 0;
@@ -68,6 +73,10 @@ ion-icon{
     padding: 16px 22px;
     box-shadow: 0px -4px 6px var(--shadow-color);
     background: var(--backgrounds-color);
+}
+
+.bottom-bar ion-icon{
+    font-size: 36px;
 }
 
 .chat-input{
