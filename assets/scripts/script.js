@@ -30,6 +30,10 @@ function toggleNone(element){
 
 function takeUserName(){
     userName = loginInput.value;
+    while(userName.length>=10){
+        alert("Por favor, insira um nome de usuário válido! (Menos de 10 caracteres)")
+        return
+    }
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
     toggleNone(loginInput);
