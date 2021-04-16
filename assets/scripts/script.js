@@ -122,7 +122,7 @@ function loadMessagesSucess(element){
         if(allMessages[i].type === "message"){
             chatContainer.innerHTML+=`
             <div class="chat-message">
-                <span class="time-message"> ${allMessages[i].time} </span>
+                <span class="time-message"> (${allMessages[i].time}) </span>
                 <strong> ${allMessages[i].from} </strong>
                 <span>para </span>
                 <strong> ${allMessages[i].to}: </strong>
@@ -133,7 +133,7 @@ function loadMessagesSucess(element){
         if(allMessages[i].type === "status"){
             chatContainer.innerHTML+=`
             <div class="chat-message status-message">
-                <span class="time-message"> ${allMessages[i].time} </span>
+                <span class="time-message"> (${allMessages[i].time}) </span>
                 <strong> ${allMessages[i].from} </strong>
                 <span> ${allMessages[i].text} </span>
             </div>
@@ -142,7 +142,7 @@ function loadMessagesSucess(element){
         if(allMessages[i].type === "private_message" && (allMessages[i].to === userName || allMessages[i].from === userName || allMessages[i].to === "Todos")){
             chatContainer.innerHTML+=`
             <div class="chat-message private-message">
-                <span class="time-message"> ${allMessages[i].time} </span>
+                <span class="time-message"> (${allMessages[i].time}) </span>
                 <strong> ${allMessages[i].from} </strong>
                 <span>reservadamente para </span>
                 <strong> ${allMessages[i].to}: </strong>
