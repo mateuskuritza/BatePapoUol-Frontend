@@ -210,9 +210,12 @@ ion-icon{
     border-radius: 4px;
     width: 261px;
     height: 54px;
-    color: #AEAEAE;
     text-align: center;
     margin-bottom: 15px;
+}
+
+.login-screen input::placeholder{
+    color: #AEAEAE;
 }
 
 .login-screen input:focus{
@@ -273,7 +276,7 @@ ion-icon{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin: 0 auto;
 }
 
