@@ -50,7 +50,8 @@ function startChat(){
     inserirUserName();
     setInterval(keepUserStatus,5000);
     setInterval(searchParticipants,10000);
-    setInterval(loadMessages,3000);
+    //setInterval(loadMessages,3000);
+    loadMessages();
 }
 
 function inserirUserName(){

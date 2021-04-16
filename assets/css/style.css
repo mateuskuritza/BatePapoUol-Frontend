@@ -239,9 +239,8 @@ ion-icon{
     margin: 4px 0;
     display: flex;
     align-items: center;
-}
-
-.chat-message span:last-of-type{
+    padding: 0 9px;
+    flex-wrap: wrap;
     word-break: break-all;
 }
 
