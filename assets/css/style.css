@@ -110,6 +110,7 @@ ion-icon{
     z-index: 2;
     width: 30vw;
     height: 100vh;
+    min-height: 450px;
     opacity: 0.6;
     background: var(--letterAndIcons-color);
     left: 0;
@@ -129,7 +130,6 @@ ion-icon{
     flex-direction: column;
     justify-content: flex-start;
     font-size: 16px;
-    overflow-y: scroll;
 }
 
 .menu-choices ion-icon{
@@ -166,6 +166,9 @@ ion-icon{
 .contacts-container{
     display: flex;
     flex-direction: column;
+    max-height: calc(100vh - 300px);
+    min-height: 200px;
+    overflow-y: scroll;
 }
 
 .contacts-container div, .visibility:hover{
