@@ -18,6 +18,7 @@ let userName;
 let userNameObject;
 let messageType;
 let messageTo;
+let participants;
 
 function showSideMenu(){
     toggleNone(sideMenuBackground);
@@ -79,7 +80,7 @@ function searchParticipants(){
 }
 
 function lookParticipantesSucess(response){
-    const participants = response.data;
+    participants = response.data;
 
     contactsContainer.innerHTML = `
     <div class="contacts selected" onclick="select(this);">
@@ -128,9 +129,9 @@ function loadMessagesSucess(element){
             chatContainer.innerHTML+=`
             <div class="chat-message">
                 <span class="time-message"> (${allMessages[i].time}) </span>
-                <strong> ${allMessages[i].from} </strong>
+                <strong onclick="selectInChat(this)"> ${allMessages[i].from} </strong>
                 <span>para </span>
-                <strong> ${allMessages[i].to}: </strong>
+                <strong onclick="selectInChat(this)"> ${allMessages[i].to}: </strong>
                 <span> ${allMessages[i].text} </span>
             </div>
             `
@@ -139,7 +140,7 @@ function loadMessagesSucess(element){
             chatContainer.innerHTML+=`
             <div class="chat-message status-message">
                 <span class="time-message"> (${allMessages[i].time}) </span>
-                <strong> ${allMessages[i].from} </strong>
+                <strong onclick="selectInChat(this)"> ${allMessages[i].from} </strong>
                 <span> ${allMessages[i].text} </span>
             </div>
             `
@@ -148,9 +149,9 @@ function loadMessagesSucess(element){
             chatContainer.innerHTML+=`
             <div class="chat-message private-message">
                 <span class="time-message"> (${allMessages[i].time}) </span>
-                <strong> ${allMessages[i].from} </strong>
+                <strong onclick="selectInChat(this)"> ${allMessages[i].from} </strong>
                 <span>reservadamente para </span>
-                <strong> ${allMessages[i].to}: </strong>
+                <strong onclick="selectInChat(this)"> ${allMessages[i].to}: </strong>
                 <span> ${allMessages[i].text} </span>
             </div>
             `
@@ -172,6 +173,21 @@ function select(element){
 
     element.classList.add("selected");
     takeType();
+}
+
+function selectInChat(element){
+    messageTo = element.innerText.replace(":","");
+    
+    const allParticipants = contactsContainer.querySelectorAll(".contacts p");
+    for(let i = 0; i < allParticipants.length; i++){
+        if(allParticipants[i].innerText === messageTo){
+            select(allParticipants[i].parentNode);
+        }
+    }
+
+    messageType = "private_message";
+    select(document.querySelectorAll(".menu-choices .visibility")[1]);
+    privateChatText();
 }
 
 function takeTo(){

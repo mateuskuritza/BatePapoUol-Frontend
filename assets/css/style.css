@@ -270,6 +270,14 @@ ion-icon:hover{
     margin-right: 4px;
 }
 
+.chat-message strong{
+    cursor: pointer;
+}
+
+.chat-message strong:hover{
+    filter: contrast(20%)
+}
+
 .status-message{
     background-color: var(--statusMessage-color);
 }
