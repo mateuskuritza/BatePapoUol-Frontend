@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
     <div class="container-all">
 
         <div class="login-screen">
@@ -30,27 +29,28 @@
             <ion-icon onclick="showSideMenu();" name="people"></ion-icon>
         </div>
 
-        <div class="chat"></div>
+        <div class="chat">
+            <div class="chat-loading none">
+                <img src="assets/imgs/chat_loading.gif" alt="Loading gif">
+                <strong>Carregando mensagens...</strong>
+            </div>
+        </div>
 
         <div class="bottom-bar">
             <div class="input-text">
                 <input type="text" name="mensagem" class="chat-input" placeholder="Escreva aqui...">
                 <span class="private-input none"></span>
             </div>
-            
-
             <ion-icon name="paper-plane-outline" onclick="sendMessage();"> </ion-icon>
         </div>
 
-        <div class="menu-background none" onclick="showSideMenu();">
-        </div>
+        <div class="menu-background none" onclick="showSideMenu();"></div>
 
         <div class="menu-choices none">
             <div class="title-participants">
                 <strong>Escolha um contato para enviar mensagem:</strong>
             </div>
-            <div class="contacts-container">
-            </div>
+            <div class="contacts-container"></div>
             <div class="title-visibility">
                 <strong>Escolha a visibilidade:</strong>
             </div>
@@ -65,7 +65,6 @@
                 <ion-icon class="check-mark" name="checkmark-outline"></ion-icon>
             </div>
         </div>
-        
     </div>
 
     <script src="assets/scripts/script.js"></script>

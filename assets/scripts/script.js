@@ -7,6 +7,7 @@ const contactsContainer = document.querySelector(".contacts-container");
 const loginInput = document.querySelector(".login-input");
 const loginButton = document.querySelector(".login-button");
 const loginLoading = document.querySelector(".login-loading");
+const chatLoading = document.querySelector(".chat-loading");
 const privateInputTextConteiner = document.querySelector(".private-input");
 const topBarUserName = document.querySelector(".top-bar span");
 const allBody = document.querySelector("body");
@@ -28,29 +29,52 @@ function toggleNone(element){
 }
 
 function takeUserName(){
-    userName = document.querySelector(".login-input").value;
+    userName = loginInput.value;
     userNameObject =  {name: userName};
     const sendUserName = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", userNameObject);
     toggleNone(loginInput);
     toggleNone(loginButton);
     toggleNone(loginLoading);
+    toggleNone(chatLoading);
     sendUserName.then(startChat);
     sendUserName.catch(sendUserError);
-    loadMessages();
-    searchParticipants();
+}
+
+function sendUserError(){
+    alert("Por favor, tente com um nome de usuário diferente, ou verifique sua conexão a internet.");
+    window.location.reload();
 }
 
 function startChat(){
     toggleNone(loginScreen);
-    setInterval(keepUserStatus,5000);
-    setInterval(loadMessages,3000);
-    //setInterval(searchParticipants,10000);
-    searchParticipants();
     inserirUserName();
+    setInterval(keepUserStatus,5000);
+    setInterval(searchParticipants,10000);
+    setInterval(loadMessages,3000);
+}
+
+function inserirUserName(){
+    topBarUserName.innerHTML = `Conectado como: <strong>${userName}</strong>`;
+}
+
+function keepUserStatus(){
+    const userStatus = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userNameObject);
+    userStatus.catch(userStatusError);
+}
+
+function userStatusError(){
+    alert("Usuário desconectado!");
+    window.location.reload();
 }
 
 function searchParticipants(){
     const lookParticipants = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants");
+    lookParticipants.then(lookParticipantesSucess);
+    lookParticipants.catch(lookParticipantsError);
+}
+
+function lookParticipantesSucess(response){
+    const participants = response.data;
 
     contactsContainer.innerHTML = `
     <div class="contacts selected" onclick="select(this);">
@@ -59,14 +83,9 @@ function searchParticipants(){
         <ion-icon class="check-mark" name="checkmark-outline"></ion-icon>
     </div>
     `
-    lookParticipants.then(lookParticipantesSucess);
-    lookParticipants.catch(lookParticipantsError);
-}
-
-function lookParticipantesSucess(response){
-    const participants = response.data;
 
     for(let i = 0 ; i < participants.length ; i++){
+
         contactsContainer.innerHTML+=`
         <div class="contacts" onclick="select(this);">
             <ion-icon name="person-circle"></ion-icon>
@@ -79,55 +98,7 @@ function lookParticipantesSucess(response){
 
 function lookParticipantsError(){
     alert("Erro ao procurar os usuários online! Por favor, atualize a página");
-}
-
-function keepUserStatus(){
-    axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", userNameObject);
-}
-
-function sendUserError(){
     window.location.reload();
-    alert("Por favor, tente com um nome de usuário diferente");
-}
-
-function select(element){
-    const type = "." + element.classList.value;
-    const selectedContacts = document.querySelectorAll(type + ".selected");
-
-    if(selectedContacts.length !== null){
-        for(let i = 0; i<selectedContacts.length; i++){
-            selectedContacts[i].classList.remove("selected");
-        }
-    }
-
-    element.classList.add("selected");
-    takeType();
-}
-
-function takeTo(){
-    messageTo = document.querySelector(".contacts.selected p").innerText;
-}
-
-function takeType(){
-    messageType = document.querySelector(".visibility.selected p").innerText;
-    if(messageType === "Reservadamente"){
-        messageType = "private_message";
-    }
-    if(messageType === "Público"){
-        messageType = "message";
-    }
-
-    if(messageType === "private_message"){
-        privateChatText()
-    }else{
-        privateInputTextConteiner.classList.add("none");
-    }
-}
-
-function privateChatText(){
-    takeTo();
-    privateInputTextConteiner.innerText = `Enviando para ${messageTo} (reservadamente)`;
-    privateInputTextConteiner.classList.remove("none");
 }
 
 function loadMessages(){
@@ -138,10 +109,12 @@ function loadMessages(){
 }
 
 function loadMessagesError(){
-    alert("Falha ao carregar o chat, por favor atualize a página!");
+    alert("Falha ao carregar o chat!");
+    window.location.reload();
 }
 
 function loadMessagesSucess(element){
+    toggleNone(chatLoading);
     const allMessages = element.data;
     chatContainer.innerHTML="";
 
@@ -181,24 +154,64 @@ function loadMessagesSucess(element){
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
+function select(element){
+    const container = "." + element.classList.value;
+    const selectedContacts = document.querySelectorAll(container + ".selected");
+
+    if(selectedContacts.length !== null){
+        for(let i = 0; i<selectedContacts.length; i++){
+            selectedContacts[i].classList.remove("selected");
+        }
+    }
+
+    element.classList.add("selected");
+    takeType();
+}
+
+function takeTo(){
+    messageTo = document.querySelector(".contacts.selected p").innerText;
+}
+
+function takeType(){
+    messageType = document.querySelector(".visibility.selected p").innerText;
+
+    if(messageType === "Reservadamente"){
+        messageType = "private_message";
+    }
+    if(messageType === "Público"){
+        messageType = "message";
+    }
+
+    if(messageType === "private_message"){
+        privateChatText();
+    }else{
+        privateInputTextConteiner.classList.add("none");
+    }
+}
+
+function privateChatText(){
+    takeTo();
+    privateInputTextConteiner.innerText = `Enviando para ${messageTo} (reservadamente)`;
+    privateInputTextConteiner.classList.remove("none");
+}
+
 function sendMessage(){
     takeTo();
     takeType();
 
     const messageText = chatInput.value;
     chatInput.value = "";
-    const message = { from: userName,to: messageTo,text: messageText, type: messageType};
+    const messageObject = { from: userName, to: messageTo, text: messageText, type: messageType};
 
-    const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", message);
+    const messageSend = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", messageObject);
     
     messageSend.then(loadMessages);
     messageSend.catch(messageError);
 }
 
-function messageError(error){
+function messageError(){
     alert("Erro no envio de sua mensagem!");
     window.location.reload();
-    console.log(error);
 }
 
 loginInput.addEventListener('keydown', function(pressed){
@@ -228,12 +241,7 @@ document.addEventListener('keyup', function(pressed){
     }
 )
 
-function inserirUserName(){
-    topBarUserName.innerHTML = `Conectado como: <strong>${userName}</strong>`;
-}
-
-
-// sim agora eu coloco tema escuro em tudo pena que sou horrivel pra escolher as cores
+// sim agora eu coloco tema escuro em tudo, pena que sou horrivel pra escolher as cores
 function toggleDarkTheme(){
     allBody.classList.toggle("dark-theme");
     toggleNone(moonIcon);
