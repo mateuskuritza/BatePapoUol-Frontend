@@ -10,11 +10,11 @@
 }
 
 .dark-theme{
-    --backgroundBody-color: #641e12;
-    --backgrounds-color: #000000;
-    --letterAndIcons-color: white;
-    --statusMessage-color: #172335;
-    --privateMessage-color: #bb3422;
+    --backgroundBody-color: #25100c;
+    --backgrounds-color: #220000;
+    --letterAndIcons-color: rgba(255, 255, 255, 0.856);
+    --statusMessage-color: #14243b;
+    --privateMessage-color: #802e2344;
     --shadow-color: rgba(255, 255, 255, 0.315);
 }
 
