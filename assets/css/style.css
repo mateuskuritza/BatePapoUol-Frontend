@@ -38,6 +38,11 @@ ion-icon{
     color: var(--letterAndIcons-color);
 }
 
+ion-icon:hover{
+    filter: opacity(70%);
+    color: #350701;
+}
+
 .top-bar{
     position: fixed;
     top: 0;
@@ -163,6 +168,11 @@ ion-icon{
     margin-top: 1px;
     padding: 7.5px 0;
 }
+
+.visibility:hover, .contacts:hover{
+    background-color: #35070131;
+}
+
 .menu-choices p{
     margin-left: 7px;
 }
