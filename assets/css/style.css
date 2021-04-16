@@ -14,7 +14,7 @@
     --backgrounds-color: #220000;
     --letterAndIcons-color: rgba(255, 255, 255, 0.856);
     --statusMessage-color: #14243b;
-    --privateMessage-color: #802e2344;
+    --privateMessage-color: #8b2d215b;
     --shadow-color: rgba(255, 255, 255, 0.315);
 }
 
@@ -77,6 +77,8 @@ ion-icon{
     height: 30px;
     font-size: 18px;
     border-radius: 10px;
+    background-color: var(--backgrounds-color);
+    color: var(--letterAndIcons-color);
 }
 
 .chat-input::placeholder{
