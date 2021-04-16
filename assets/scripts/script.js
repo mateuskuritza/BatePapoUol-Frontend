@@ -48,10 +48,10 @@ function sendUserError(){
 function startChat(){
     toggleNone(loginScreen);
     inserirUserName();
+    searchParticipants();
     setInterval(keepUserStatus,5000);
     setInterval(searchParticipants,10000);
-    //setInterval(loadMessages,3000);
-    loadMessages();
+    setInterval(loadMessages,3000);
 }
 
 function inserirUserName(){
@@ -152,7 +152,8 @@ function loadMessagesSucess(element){
             `
         }
     }
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    const ultimaMensagem = document.querySelector('.chat .chat-message:last-of-type');
+    ultimaMensagem.scrollIntoView();
 }
 
 function select(element){
